@@ -1,0 +1,36 @@
+graph TB
+    subgraph "Database Optimization"
+        QueryIndexing["Database Indexing"]
+        QueryOptimization["Query Optimization"]
+        ConnectionPooling["Connection Pooling"]
+    end
+    
+    subgraph "Caching Strategy"
+        SessionCaching["Session-based Result Caching"]
+        QueryResultCache["Query Result Cache"]
+        ChartDataCache["Chart Data Cache"]
+    end
+    
+    subgraph "Frontend Optimization"
+        AJAXPagination["AJAX-based Pagination"]
+        LazyLoading["Lazy Chart Loading"]
+        ClientSideFiltering["Client-side Filtering"]
+    end
+    
+    subgraph "Resource Management"
+        ChartInstanceMgmt["Chart Instance Management"]
+        MemoryManagement["Memory Management"]
+        SessionCleanup["Session Cleanup"]
+    end
+    
+    QueryIndexing --> QueryOptimization
+    QueryOptimization --> ConnectionPooling
+    
+    SessionCaching --> QueryResultCache
+    QueryResultCache --> ChartDataCache
+    
+    AJAXPagination --> LazyLoading
+    LazyLoading --> ClientSideFiltering
+    
+    ChartInstanceMgmt --> MemoryManagement
+    MemoryManagement --> SessionCleanup

@@ -1,0 +1,38 @@
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant Django
+    participant LLM
+    participant Database
+    participant QueryHistory
+    
+    Note over User,QueryHistory: Main Query Flow
+    User->>Frontend: Enter natural language query
+    Frontend->>Django: POST /api/generate-sql/
+    Django->>LLM: Send query + schema
+    LLM->>Django: Return SQL query
+    Django->>QueryHistory: Save query history
+    Django->>Frontend: Return generated SQL
+    Frontend->>User: Display SQL
+    
+    User->>Frontend: Click "Execute SQL"
+    Frontend->>Django: POST /api/execute-sql/
+    Django->>Database: Execute SQL query
+    Database->>Django: Return results
+    Django->>Frontend: Return paginated results
+    Frontend->>User: Display results (table/chart)
+    
+    Note over User,QueryHistory: Usage Report Flow
+    User->>Frontend: Navigate to Usage Report
+    Frontend->>Django: GET /usage-report/
+    Django->>QueryHistory: Query usage statistics
+    QueryHistory->>Django: Return aggregated data
+    Django->>Frontend: Return report data + charts
+    Frontend->>User: Display usage report
+    
+    User->>Frontend: Filter by date range
+    Frontend->>Django: AJAX /api/usage-report-data/
+    Django->>QueryHistory: Query filtered data
+    QueryHistory->>Django: Return filtered statistics
+    Django->>Frontend: Return updated chart data
+    Frontend->>User: Update charts dynamically

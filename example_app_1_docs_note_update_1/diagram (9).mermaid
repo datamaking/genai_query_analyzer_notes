@@ -1,0 +1,44 @@
+graph TB
+    subgraph "Authentication Layer"
+        CustomUser["Custom User Model"]
+        EmailAuth["Email-based Authentication"]
+        SessionMgmt["Session Management"]
+        LoginRequired["@login_required Decorators"]
+    end
+    
+    subgraph "Authorization Layer"
+        UserDataIsolation["User Data Isolation"]
+        QueryHistoryAccess["Query History Access Control"]
+        ReportAccess["Usage Report Access Control"]
+    end
+    
+    subgraph "Security Measures"
+        CSRF["CSRF Protection"]
+        PasswordHash["Password Hashing"]
+        SecureHeaders["Secure Headers"]
+        InputValidation["Input Validation"]
+        SQLInjectionPrevention["SQL Injection Prevention"]
+    end
+    
+    subgraph "Data Protection"
+        SessionDataEncryption["Session Data Encryption"]
+        QueryResultsSecurity["Query Results Security"]
+        UserDataSeparation["User Data Separation"]
+    end
+    
+    CustomUser --> EmailAuth
+    EmailAuth --> SessionMgmt
+    SessionMgmt --> LoginRequired
+    LoginRequired --> UserDataIsolation
+    
+    UserDataIsolation --> QueryHistoryAccess
+    UserDataIsolation --> ReportAccess
+    
+    CSRF --> InputValidation
+    PasswordHash --> CustomUser
+    SecureHeaders --> SessionMgmt
+    InputValidation --> SQLInjectionPrevention
+    
+    SessionMgmt --> SessionDataEncryption
+    QueryHistoryAccess --> QueryResultsSecurity
+    ReportAccess --> UserDataSeparation

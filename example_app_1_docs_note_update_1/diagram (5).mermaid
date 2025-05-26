@@ -1,0 +1,35 @@
+graph TB
+    subgraph "Report Components"
+        DateFilter["Date Range Filter"]
+        LLMChart["LLM Usage Bar Chart"]
+        DataSourceChart["Data Source Bar Chart"]
+        DatabaseChart["Database Pie Chart"]
+        HistoryTable["Query History Table"]
+    end
+    
+    subgraph "Data Processing"
+        QueryAggregation["Query Aggregation"]
+        ChartDataPrep["Chart Data Preparation"]
+        TablePagination["Table Pagination"]
+    end
+    
+    subgraph "AJAX Updates"
+        DateRangeUpdate["Date Range Update"]
+        ChartUpdate["Chart Update"]
+        TableUpdate["Table Update"]
+        PaginationUpdate["Pagination Update"]
+    end
+    
+    DateFilter --> QueryAggregation
+    QueryAggregation --> ChartDataPrep
+    QueryAggregation --> TablePagination
+    
+    ChartDataPrep --> LLMChart
+    ChartDataPrep --> DataSourceChart
+    ChartDataPrep --> DatabaseChart
+    TablePagination --> HistoryTable
+    
+    DateFilter --> DateRangeUpdate
+    DateRangeUpdate --> ChartUpdate
+    DateRangeUpdate --> TableUpdate
+    HistoryTable --> PaginationUpdate

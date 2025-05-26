@@ -1,0 +1,40 @@
+graph TB
+    subgraph "Chart Types"
+        BarChart["Bar Charts (LLM & Data Source)"]
+        PieChart["Pie Chart (Database Usage)"]
+        ResultChart["Result Visualization Chart"]
+    end
+    
+    subgraph "Data Sources"
+        UsageData["Usage Statistics"]
+        QueryResults["Query Execution Results"]
+        AggregatedData["Aggregated Metrics"]
+    end
+    
+    subgraph "Chart Features"
+        Responsive["Responsive Design"]
+        Interactive["Interactive Tooltips"]
+        ColorGeneration["Dynamic Color Generation"]
+        ChartDestroy["Chart Instance Management"]
+    end
+    
+    UsageData --> BarChart
+    UsageData --> PieChart
+    QueryResults --> ResultChart
+    AggregatedData --> BarChart
+    AggregatedData --> PieChart
+    
+    BarChart --> Responsive
+    PieChart --> Responsive
+    ResultChart --> Responsive
+    
+    BarChart --> Interactive
+    PieChart --> Interactive
+    ResultChart --> Interactive
+    
+    PieChart --> ColorGeneration
+    ResultChart --> ColorGeneration
+    
+    BarChart --> ChartDestroy
+    PieChart --> ChartDestroy
+    ResultChart --> ChartDestroy

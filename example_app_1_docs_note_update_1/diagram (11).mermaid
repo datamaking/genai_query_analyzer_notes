@@ -1,0 +1,36 @@
+graph TD
+    UserAction[User Action] --> Validation{Input Validation}
+    Validation -->|Invalid| ValidationError[Show Validation Error]
+    Validation -->|Valid| ProcessRequest[Process Request]
+    
+    ProcessRequest --> RequestType{Request Type}
+    
+    RequestType -->|Query Generation| LLMCall{LLM API Call}
+    RequestType -->|Query Execution| DBOperation{Database Operation}
+    RequestType -->|Report Generation| ReportGeneration{Report Generation}
+    RequestType -->|Pagination| PaginationOperation{Pagination Operation}
+    
+    LLMCall -->|Success| SaveHistory[Save to Query History]
+    LLMCall -->|Failure| LLMError[Show LLM Error]
+    
+    DBOperation -->|Success| CacheResults[Cache Results in Session]
+    DBOperation -->|Failure| DBError[Show DB Error]
+    
+    ReportGeneration -->|Success| DisplayReport[Display Usage Report]
+    ReportGeneration -->|Failure| ReportError[Show Report Error]
+    
+    PaginationOperation -->|Success| UpdateDisplay[Update Display]
+    PaginationOperation -->|Failure| PaginationError[Show Pagination Error]
+    
+    SaveHistory --> Success[Return Success]
+    CacheResults --> Success
+    DisplayReport --> Success
+    UpdateDisplay --> Success
+    
+    ValidationError --> UserAction
+    LLMError --> UserAction
+    DBError --> UserAction
+    ReportError --> UserAction
+    PaginationError --> UserAction
+    
+    Success --> DisplayResult[Display Result]

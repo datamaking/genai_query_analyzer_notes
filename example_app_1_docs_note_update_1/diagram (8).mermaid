@@ -1,0 +1,31 @@
+graph TB
+    subgraph "Session Data"
+        QueryResults["Query Results Cache"]
+        UserSession["User Session Data"]
+        ResultMetadata["Result Metadata"]
+    end
+    
+    subgraph "Session Operations"
+        StoreResults["Store Query Results"]
+        RetrieveResults["Retrieve Paginated Data"]
+        UpdatePageSize["Update Page Size"]
+        CleanupSessions["Session Cleanup"]
+    end
+    
+    subgraph "Session Security"
+        UserIsolation["User Data Isolation"]
+        SessionExpiry["Session Expiration"]
+        DataValidation["Data Validation"]
+    end
+    
+    QueryResults --> StoreResults
+    StoreResults --> RetrieveResults
+    RetrieveResults --> UpdatePageSize
+    
+    UserSession --> UserIsolation
+    ResultMetadata --> SessionExpiry
+    QueryResults --> DataValidation
+    
+    StoreResults --> UserIsolation
+    RetrieveResults --> DataValidation
+    UpdatePageSize --> SessionExpiry

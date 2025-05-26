@@ -1,0 +1,63 @@
+graph TB
+    subgraph "Home Page Components"
+        LLMSelection["LLM Model Selection"]
+        DataSourceSelection["Data Source Selection"]
+        DatabaseDropdown["Database Dropdown"]
+        TablesCheckbox["Tables Checkbox"]
+        QueryTextarea["Query Textarea"]
+        ActionButtons["Action Buttons"]
+        ProgressBar["Enhanced Progress Bar"]
+        SQLDisplay["SQL Display"]
+        ResultsTable["Paginated Results Table"]
+        ResultsChart["Results Chart"]
+        PaginationControls["Pagination Controls"]
+    end
+    
+    subgraph "Usage Report Components"
+        DateRangeFilter["Date Range Filter"]
+        LLMUsageChart["LLM Usage Chart"]
+        DataSourceUsageChart["Data Source Usage Chart"]
+        DatabaseUsageChart["Database Usage Chart"]
+        QueryHistoryTable["Query History Table"]
+        ReportPagination["Report Pagination"]
+    end
+    
+    subgraph "JavaScript Functions"
+        LoadDatabases["loadDatabases()"]
+        LoadTables["loadTables()"]
+        GenerateSQL["generateSQL()"]
+        OptimizeSQL["optimizeSQL()"]
+        ExecuteSQL["executeSQL()"]
+        LoadPage["loadPage()"]
+        UpdatePageSize["updatePageSize()"]
+        CreateCharts["createCharts()"]
+        UpdateReport["updateReport()"]
+        SetupPagination["setupPaginationLinks()"]
+    end
+    
+    subgraph "Event Handlers"
+        DataSourceChange["Data Source Change"]
+        DatabaseChange["Database Change"]
+        ButtonClicks["Button Clicks"]
+        PageClicks["Page Navigation Clicks"]
+        DateFilterSubmit["Date Filter Submit"]
+        PageSizeChange["Page Size Change"]
+    end
+    
+    DataSourceChange --> LoadDatabases
+    DatabaseChange --> LoadTables
+    ButtonClicks --> GenerateSQL
+    ButtonClicks --> OptimizeSQL
+    ButtonClicks --> ExecuteSQL
+    PageClicks --> LoadPage
+    PageSizeChange --> UpdatePageSize
+    DateFilterSubmit --> UpdateReport
+    
+    GenerateSQL --> SQLDisplay
+    ExecuteSQL --> ResultsTable
+    ExecuteSQL --> ResultsChart
+    ExecuteSQL --> PaginationControls
+    
+    UpdateReport --> CreateCharts
+    UpdateReport --> QueryHistoryTable
+    LoadPage --> SetupPagination

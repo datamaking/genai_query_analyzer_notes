@@ -1,0 +1,31 @@
+graph TB
+    subgraph "Query Results Pagination"
+        SessionStore["Session Storage"]
+        ResultID["Unique Result ID"]
+        FullDataset["Complete Result Set"]
+        PageCalculation["Page Calculation Logic"]
+    end
+    
+    subgraph "Usage Report Pagination"
+        DjangoPaginator["Django Paginator"]
+        QuerySet["QueryHistory QuerySet"]
+        PageObject["Page Object"]
+    end
+    
+    subgraph "Frontend Pagination"
+        PaginationControls["Pagination Controls"]
+        AJAXRequests["AJAX Page Requests"]
+        TableUpdate["Dynamic Table Update"]
+    end
+    
+    SessionStore --> ResultID
+    ResultID --> FullDataset
+    FullDataset --> PageCalculation
+    PageCalculation --> PaginationControls
+    
+    QuerySet --> DjangoPaginator
+    DjangoPaginator --> PageObject
+    PageObject --> PaginationControls
+    
+    PaginationControls --> AJAXRequests
+    AJAXRequests --> TableUpdate

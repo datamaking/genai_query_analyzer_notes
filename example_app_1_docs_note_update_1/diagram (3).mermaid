@@ -1,0 +1,52 @@
+graph LR
+    subgraph "Authentication URLs"
+        SignUpURL["/signup/"]
+        SignInURL["/signin/"]
+        SignOutURL["/signout/"]
+    end
+    
+    subgraph "Main URLs"
+        HomeURL["/"]
+        UsageReportURL["/usage-report/"]
+    end
+    
+    subgraph "API URLs"
+        GetDBsURL["/api/get-databases/"]
+        GetTablesURL["/api/get-tables/"]
+        GenSQLURL["/api/generate-sql/"]
+        OptSQLURL["/api/optimize-sql/"]
+        ExecSQLURL["/api/execute-sql/"]
+        GetPageURL["/api/get-result-page/"]
+        UpdatePageSizeURL["/api/update-page-size/"]
+        UsageReportDataURL["/api/usage-report-data/"]
+    end
+    
+    subgraph "Views"
+        SignUpView["signup_view()"]
+        SignInView["signin_view()"]
+        SignOutView["signout_view()"]
+        HomeView["home_view()"]
+        UsageReportView["usage_report_view()"]
+        GetDBsView["get_databases()"]
+        GetTablesView["get_tables()"]
+        GenSQLView["generate_sql()"]
+        OptSQLView["optimize_sql()"]
+        ExecSQLView["execute_sql()"]
+        GetPageView["get_result_page()"]
+        UpdatePageSizeView["update_page_size()"]
+        UsageReportDataView["usage_report_data()"]
+    end
+    
+    SignUpURL --> SignUpView
+    SignInURL --> SignInView
+    SignOutURL --> SignOutView
+    HomeURL --> HomeView
+    UsageReportURL --> UsageReportView
+    GetDBsURL --> GetDBsView
+    GetTablesURL --> GetTablesView
+    GenSQLURL --> GenSQLView
+    OptSQLURL --> OptSQLView
+    ExecSQLURL --> ExecSQLView
+    GetPageURL --> GetPageView
+    UpdatePageSizeURL --> UpdatePageSizeView
+    UsageReportDataURL --> UsageReportDataView
